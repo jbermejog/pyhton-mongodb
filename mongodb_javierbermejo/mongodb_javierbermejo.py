@@ -3,9 +3,7 @@ from pymongo import MongoClient
 from decouple import config
 from urllib.parse import quote_plus
 import sys
-import os
 import datetime
-import json
 
 
 class Actividad:
@@ -72,46 +70,50 @@ if __name__ == '__main__':
                  "nota": 8.4, "fecha": "12-07-2021 12: 45: 26"},
              {"nombre": "Juan Martínez", "edad": 30, "email": "juan@eip.com", "nota": 6.8, "fecha": "12-07-2021 12: 45: 26"}]
 
-    # datos_preparados = db.preparar_fechas(datos)
+    datos_preparados = db.preparar_fechas(datos)
 
-    # db.insertar(datos_preparados)
+    db.insertar(datos_preparados)
 
-    # print('Tarea 1 insertar datos realizada correctamente ....')
-    # input('\nPulsa enter para iniciar la segunda Tarea ...')
+    print('Tarea 1 insertar datos realizada correctamente ....')
+    input('\nPulsa enter para iniciar la segunda Tarea ...')
 
 
-    # # Actualizar nota de Amparo
-    # nombre =  {"nombre": "Amparo Mayoral"}
-    # nota = { "$set": { "nota": 9.3 } }
+    # Actualizar nota de Amparo
+    nombre =  {"nombre": "Amparo Mayoral"}
+    nota = { "$set": { "nota": 9.3 } }
 
-    # db.actualizar_nota(nombre,nota)
+    db.actualizar_nota(nombre,nota)
 
-    # # Actualizar nota de Juan
-    # nombre =  {"nombre": "Juan Martínez"}
-    # nota = { "$set": { "nota": 7.2 } }
+    # Actualizar nota de Juan
+    nombre =  {"nombre": "Juan Martínez"}
+    nota = { "$set": { "nota": 7.2 } }
 
-    # db.actualizar_nota(nombre,nota)
+    db.actualizar_nota(nombre,nota)
 
     print('Tarea 2 actualizar datos realizada correctamente ....')
     input('\nPulsa enter para iniciar la tercera Tarea ...')
 
+    # Listamos los datos formateados
     db.lectura()
 
     print('Tarea 3 listado de datos realizada correctamente ....')
     input('\nPulsa enter para iniciar la cuarta Tarea ...')
 
+    # Listamos los datos aplicando una consulta
     consulta = {'nota': { '$gt': 7, '$lt': 7.5}}
     db.lectura(consulta)
 
     print('Tarea 4 filtrar notas de 7 a 7.5 realizada correctamente ....')
     input('\nPulsa enter para iniciar la quinta Tarea ...')
 
+    # Eliminamos a Pedro
     consulta = {'nombre': 'Pedro López'}
     db.eliminar(consulta)
 
     print('Tarea 5 eliminar a Pedro López realizada correctamente ....')
     print('Los datos han quedado así')
 
+    # Listamos todos los datos que han quedado
     db.lectura()
     print('Pedro López eliminado ... Hasta la vista baby!! ....')
 
