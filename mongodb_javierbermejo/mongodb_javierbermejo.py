@@ -28,7 +28,7 @@ class Actividad:
             sys.exit(1)
 
     # Preparamos las fechas en formato
-    def preparar_fechas(self,datos):
+    def preparar_fechas(self, datos):
         for dato in datos:
             dato['fecha'] = datetime.datetime.strptime(
                 dato['fecha'], "%d-%m-%Y %H: %M: %S")
@@ -39,18 +39,18 @@ class Actividad:
         self.mycol.insert_many(datos)
 
     # Actualizar los datos requeridos
-    def actualizar_nota(self, nombre,nota):
-        self.mycol.update_one(nombre,nota)
+    def actualizar_nota(self, nombre, nota):
+        self.mycol.update_one(nombre, nota)
 
     # Lectura de datos
-    def lectura(self,consulta={}):
+    def lectura(self, consulta={}):
         registros = self.mycol.find(consulta)
 
         print('{:<25}\t{:<20}\t{}\t{:<20}\t{}\t{}\t'.format(
-                'ID', 'NOMBRE', 'EDAD', 'EMAIL', 'NOTA', 'FECHA'))
+            'ID', 'NOMBRE', 'EDAD', 'EMAIL', 'NOTA', 'FECHA'))
         for registro in registros:
             print('{}\t{:<20}\t{}\t{:<20}\t{}\t{}\t'.format(
-                registro['_id'], registro['nombre'], registro['edad'], registro['email'], registro['nota'],registro['fecha']))
+                registro['_id'], registro['nombre'], registro['edad'], registro['email'], registro['nota'], registro['fecha']))
 
     # Eliminar los datos requeridos
     def eliminar(self, consulta):
@@ -58,7 +58,6 @@ class Actividad:
 
 
 if __name__ == '__main__':
-
 
     db = Actividad()
     input("Presiona enter para iniciar las tareas...")
@@ -77,18 +76,17 @@ if __name__ == '__main__':
     print('Tarea 1 insertar datos realizada correctamente ....')
     input('\nPulsa enter para iniciar la segunda Tarea ...')
 
-
     # Actualizar nota de Amparo
-    nombre =  {"nombre": "Amparo Mayoral"}
-    nota = { "$set": { "nota": 9.3 } }
+    nombre = {"nombre": "Amparo Mayoral"}
+    nota = {"$set": {"nota": 9.3}}
 
-    db.actualizar_nota(nombre,nota)
+    db.actualizar_nota(nombre, nota)
 
     # Actualizar nota de Juan
-    nombre =  {"nombre": "Juan Martínez"}
-    nota = { "$set": { "nota": 7.2 } }
+    nombre = {"nombre": "Juan Martínez"}
+    nota = {"$set": {"nota": 7.2}}
 
-    db.actualizar_nota(nombre,nota)
+    db.actualizar_nota(nombre, nota)
 
     print('Tarea 2 actualizar datos realizada correctamente ....')
     input('\nPulsa enter para iniciar la tercera Tarea ...')
@@ -100,7 +98,7 @@ if __name__ == '__main__':
     input('\nPulsa enter para iniciar la cuarta Tarea ...')
 
     # Listamos los datos aplicando una consulta
-    consulta = {'nota': { '$gt': 7, '$lt': 7.5}}
+    consulta = {'nota': {'$gt': 7, '$lt': 7.5}}
     db.lectura(consulta)
 
     print('Tarea 4 filtrar notas de 7 a 7.5 realizada correctamente ....')
