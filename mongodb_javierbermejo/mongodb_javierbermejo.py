@@ -116,5 +116,3 @@ if __name__ == '__main__':
     # Listamos todos los datos que han quedado
     db.lectura()
     print('Pedro López eliminado ... Hasta la vista baby!! ....')
-
-
